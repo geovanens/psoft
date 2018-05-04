@@ -1,0 +1,20 @@
+.footer {
+  background-color: hsl(171, 100%, 41%);
+  height: 20px;
+}
+
+.card p {
+  word-break: break-word;
+}
+
+#options {
+  margin-top: 10px;
+}
+
+#listagem {
+  margin-bottom: 10px;
+}
+
+#btn-logout {
+  
+}
