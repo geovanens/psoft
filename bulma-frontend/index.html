@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Mural PSoft</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    </head>
-    <body>
-        <!--CABECALHO-->
-        <section class="hero is-primary">
-        	<div id="btn-logout" class=" container level-right">
-                <button class="button is-primary is-inverted is-outlined">Logout</button>
-            </div>
-            <!--TITULOS-->
-            <div class="hero-body" style="text-align: center">
-                <div class="container">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mural PSoft</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+</head>
+
+<body>
+    <!--CABECALHO-->
+    <section class="hero is-primary">
+        <div id="btn-logout" class=" container level-right">
+            <button class="button is-primary is-inverted is-outlined" hidden="true">Logout</button>
+        </div>
+        <!--TITULOS-->
+        <div class="hero-body" style="text-align: center">
+            <div class="container">
                 <h1 class="title">
                     Mural Projeto de Software
                 </h1>
                 <h2 class="subtitle" style="font-size: 18px">
                         Este site é um mural simples em que qualquer aluno <br> cadastrado na disciplina pode postar mensagens livremente.
                 </h2>
-                </div>
             </div>
-            <!--LOGIN
+        </div>
+        <!--LOGIN
             <div id="login-form" class="container" style="width: 50%; margin-bottom: 20px">
                 <p class="text is-small" style="text-align: center">Insira suas credenciais</p>
                 <div class="field is-horizontal"> 
@@ -53,51 +55,53 @@
                 </div>
             </div>
             -->
-            <div class="container is-centered"><p id="status-login" class="text is-small has-text-danger is-centered"></p></div>
-        </section>
-
-        <!--CORPO-->
-        <div id="options" class="tabs is-centered is-boxed">
-            <ul>
-                <li id="mural-tab" class="is-active">
-                    <a onclick="managerTabs(parentElement)">
-                        <span class="icon is-small"><i class="material-icons">aspect_ratio</i></span>
-                        <span>Mural</span>
-                    </a>
-                </li>
-                <li id="suas-mensagens-tab">
-                    <a onclick="managerTabs(parentElement)">
-                        <span class="icon is-small"><i class="material-icons">message</i></span>
-                        <span>Suas Mensagens</span>
-                    </a>
-                </li>
-                <li id="buscar-tab">
-                    <a onclick="managerTabs(parentElement)">
-                        <span class="icon is-small"><i class="material-icons">search</i></span>
-                        <span>Buscar</span>
-                    </a>
-                </li>
-            </ul>
+        <div class="container is-centered">
+            <p id="status-login" class="text is-small has-text-danger is-centered"></p>
         </div>
-        <div class="container is-widescreen">
-            <div class="container" style="filter: blur(5px);">
-                <div id="listagem" class="columns is-1 is-multiline"></div>
+    </section>
 
-            </div>
+    <!--CORPO-->
+    <div id="options" class="tabs is-centered is-boxed">
+        <ul>
+            <li id="mural-tab" class="is-active">
+                <a onclick="managerTabs(parentElement)">
+                    <span class="icon is-small"><i class="material-icons">aspect_ratio</i></span>
+                    <span>Mural</span>
+                </a>
+            </li>
+            <li id="suas-mensagens-tab">
+                <a onclick="managerTabs(parentElement)">
+                    <span class="icon is-small"><i class="material-icons">message</i></span>
+                    <span>Suas Mensagens</span>
+                </a>
+            </li>
+            <li id="buscar-tab">
+                <a onclick="managerTabs(parentElement)">
+                    <span class="icon is-small"><i class="material-icons">search</i></span>
+                    <span>Buscar</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="container is-widescreen">
+        <div class="container" style="filter: blur(5px);">
+            <div id="listagem" class="columns is-1 is-multiline"></div>
+
         </div>
-        
-                    
-        <!--RODAPE-->
-        <footer class="footer">
-            <div class="container">
-                <div class="content has-text-centered">
+    </div>
+
+    <!--RODAPE-->
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered">
                 <p>
                     by <a href="https://github.com/geovanens" target="_blank">Geovane Silva</a>. Framework <strong><a href="https://bulma.io" target="_blank">Bulma</strong></a>
                 </p>
-                </div>
             </div>
-        </footer>
-        
+        </div>
+    </footer>
+
     <script src="client.js"></script>
-    </body>
+</body>
+
 </html>
