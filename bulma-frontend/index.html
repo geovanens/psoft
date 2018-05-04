@@ -12,6 +12,11 @@
     <body>
         <!--CABECALHO-->
         <section class="hero is-primary">
+        	<span class="navbar-item">
+              <a class="button is-primary is-inverted is-right">
+                <span>Logout</span>
+              </a>
+            </span>
             <!--TITULOS-->
             <div class="hero-body" style="text-align: center">
                 <div class="container">
@@ -23,7 +28,7 @@
                 </h2>
                 </div>
             </div>
-            <!--LOGIN-->
+            <!--LOGIN
             <div id="login-form" class="container" style="width: 50%; margin-bottom: 20px">
                 <p class="text is-small" style="text-align: center">Insira suas credenciais</p>
                 <div class="field is-horizontal"> 
@@ -49,11 +54,9 @@
                     </p>
                 </div>
             </div>
+            -->
             <div class="container is-centered"><p id="status-login" class="text is-small has-text-danger is-centered"></p></div>
         </section>
-        <button id="btn-logout" class="button is-primary is-outlined is-pulled-right is-inverted" style="top: -240px; right: 5px" onclick="logout()">
-            Logout
-        </button>
 
         <!--CORPO-->
         <div id="options" class="tabs is-centered is-boxed">
@@ -79,7 +82,7 @@
             </ul>
         </div>
         <div class="container is-widescreen">
-            <div class="container">
+            <div class="container" style="filter: blur(5px);">
                 <div id="listagem" class="columns is-1 is-multiline"></div>
 
             </div>
