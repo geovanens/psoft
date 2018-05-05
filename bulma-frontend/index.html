@@ -6,19 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mural PSoft</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="shortcut icon" href="https://www.iconsdb.com/icons/preview/guacamole-green/adobe-ps-xxl.png">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 </head>
 
 <body>
     <!--CABECALHO-->
     <section class="hero is-primary">
-        <div id="btn-logout" class=" container level-right">
-            <button class="button is-primary is-inverted is-outlined" hidden="true">Logout</button>
+        <div class="text-right">
+            <button id="btn-login-logout" type="btn btn-outline-dark" class="btn btn-default btn-sm" onclick="login_logout(this)">Login</button>
         </div>
         <!--TITULOS-->
-        <div class="hero-body" style="text-align: center">
+        <div id="body-hero" class="hero-body" style="text-align: center">
             <div class="container">
                 <h1 class="title">
                     Mural Projeto de Software
@@ -28,37 +30,27 @@
                 </h2>
             </div>
         </div>
-        <!--LOGIN
-            <div id="login-form" class="container" style="width: 50%; margin-bottom: 20px">
-                <p class="text is-small" style="text-align: center">Insira suas credenciais</p>
-                <div class="field is-horizontal"> 
-                    <p class="control has-icons-left has-icons-right">
-                        <input id="user-input" class="input is-small" type="email" placeholder="Usuario" onchange="verify_user(this)" required>
-                        <span class="icon is-small is-left">
-                            <i class="material-icons" style="size: 18db">account_circle</i>
-                        </span>
-                        <span class="icon is-small is-right">
-                            <i id="check-user" class="fas fa-check"></i>
-                        </span>
-                    </p>
-                    <p class="control has-icons-left">
-                        <input id="passwd-input" class="input is-small" type="password" placeholder="Password">
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-lock"></i>
-                        </span>
-                    </p>
-                    <p class="control">
-                        <button class="button is-primary is-outlined is-inverted is-small" onclick="confirma_login()">
-                            Login
-                        </button>
-                    </p>
+    </section>
+    <div id="box-login" class="box" hidden=true>
+        <div>
+            <div class="field">
+                <div class="control">
+                <input id="user-login" class="input is-small" type="email" placeholder="Frontend" autofocus="">
+                <p id="required-user" class="help is-danger" hidden=true>Você deve digitar um frontend</p>
                 </div>
             </div>
-            -->
-        <div class="container is-centered">
-            <p id="status-login" class="text is-small has-text-danger is-centered"></p>
+
+            <div class="field">
+                <div class="control">
+                <input id="secret" class="input is-small" type="password" placeholder="Secret">
+                <p id="required-secret" class="help is-danger" hidden=true>Você deve digitar um secret</p>
+                </div>
+            </div>
+            <p id="status-login" class="help is-danger" hidden=true></p>
+            <button class="button is-block is-info is-small is-fullwidth" onclick="confirma_login()">Login</button>
         </div>
-    </section>
+         
+    </div>
 
     <!--CORPO-->
     <div id="options" class="tabs is-centered is-boxed">
@@ -83,6 +75,11 @@
             </li>
         </ul>
     </div>
+    <div id="box-busca" class="box" hidden=true>
+        <input id="input-search" class="input is-small" type="text" placeholder="Termo de Busca" onkeydown="pressEnter()">
+        <button class="button is-block is-info is-small is-fullwidth" onclick="buscar_mensagens()">Buscar</button>
+    </div>
+    
     <div class="container is-widescreen">
         <div class="container" style="filter: blur(5px);">
             <div id="listagem" class="columns is-1 is-multiline"></div>
