@@ -1,7 +1,9 @@
 const listagem = document.getElementById('listagem');
 const usuario = document.getElementById("user-login");
 const senha = document.getElementById("secret");
-
+const titulo = document.getElementById("input-titulo");
+const mensagem = document.getElementById("input-mensagem");
+const autor = document.getElementById("input-autor");
 let mensagens = [];
 
 function verify_user() {
@@ -95,6 +97,27 @@ function confirma_login () {
 	
 }
 
+function enviar_mensagem() {
+	if (titulo.value.trim == "" || mensagem.value.trim == "" || autor.value.trim == "") {
+		const stat_mensagem = document.getElementById('status-mensagem');
+		stat.innerHTML = `<small style="color: red">Dados de mensagem inválidos</small>`;
+		stat_mensagem.hidden = false;
+	}
+	else {
+		const dados = {
+			title:titulo.value, 
+			msg:mensagem.value, 
+			author:autor.value, 
+			credentials:`${usuario.value}:${senha.value}`
+		};
+		const corpo = JSON.stringify(dados);
+		fetch('http://150.165.85.16:9900/api/msgs', { method: 'POST', body: corpo});
+		titulo.value = "";
+		mensagem.value = "";
+		autor.value = "";
+	}
+}
+
 let tab_ativa = "mural-tab";
 function managerTabs (parent) {
     document.getElementById(tab_ativa).className = "";
@@ -103,6 +126,8 @@ function managerTabs (parent) {
 
     if (localStorage.getItem("logado") === "true") {
         if (tab_ativa === "mural-tab") {
+            document.getElementById("input-search").parentElement.hidden = true;
+            document.getElementById("box-mensagem").hidden = true;
             get_messages().then(function () {
                 const itens = mensagens.filter(function (e) {
                     if (e.frontend != "icaro" && e.frontend != "caiolira" && e.frontend != "hgalvao") {
@@ -113,11 +138,19 @@ function managerTabs (parent) {
             });
         }
         else if (tab_ativa === "buscar-tab") {
+            document.getElementById("box-mensagem").hidden = true;
             var find = document.getElementById("input-search");
             update_view([]);
             find.parentElement.hidden = false;
         }
+        else if (tab_ativa === "enviar-mensagens-tab") {
+            document.getElementById("input-search").parentElement.hidden = true;
+            document.getElementById("box-mensagem").hidden = false;
+            update_view([]);
+        }
         else {
+            document.getElementById("box-mensagem").hidden = true;
+            document.getElementById("input-search").parentElement.hidden = true;
             get_messages().then(function () {
                 const itens = mensagens.filter(function (e) {
                     if (e.frontend === usuario.value) {
@@ -148,12 +181,15 @@ function update_view (mensagens_update) {
                 <header class="card-header">
                     <p class="card-header-title">
                         ${e.title}
-                    </p>
-                    <a href="#" class="card-header-icon" aria-label="more options">
-                        <span class="icon">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </a>
+                    </p>`;
+                    if (usuario.value == e.frontend) {
+                        corpo_msg += `
+                        <a href="#" class="card-header-icon" aria-label="more options">
+                            <a id="delete" class="delete is-small is-danger" onclick="deletar('${e.id}')"></a>
+                        </a>`
+                    }
+                    
+                corpo_msg += `
                 </header>
                 <div class="card-content">
                     <div id="corpo-msg" class="content">
@@ -200,6 +236,14 @@ function get_messages () {
 		Object.assign(mensagens, data);
         mensagens.sort(function(a,b) {return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()});
     });
+}
+
+function deletar(id) {
+	const corpo = JSON.stringify({credentials:`${usuario.value}:${senha.value}`});
+    fetch(`http://150.165.85.16:9900/api/msgs/${id}`, {method:'DELETE', body: corpo})
+    .then(function () {
+		managerTabs(document.getElementById(tab_ativa));
+	});
 }
 
 check_storage();

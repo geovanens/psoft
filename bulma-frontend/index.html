@@ -67,6 +67,12 @@
                     <span>Suas Mensagens</span>
                 </a>
             </li>
+            <li id="enviar-mensagens-tab">
+                    <a onclick="managerTabs(parentElement)">
+                        <span class="icon is-small"><i class="material-icons">message</i></span>
+                        <span>Enviar Mensagens</span>
+                    </a>
+                </li>
             <li id="buscar-tab">
                 <a onclick="managerTabs(parentElement)">
                     <span class="icon is-small"><i class="material-icons">search</i></span>
@@ -76,11 +82,73 @@
         </ul>
     </div>
     <div id="box-busca" class="box" hidden=true>
-        <input id="input-search" class="input is-small" type="text" placeholder="Termo de Busca" onkeydown="pressEnter()">
+        <input id="input-search" class="input is-small" type="text" placeholder="Termo de Busca" onkeydown="pressEnter()" autofocus>
         <button class="button is-block is-info is-small is-fullwidth" onclick="buscar_mensagens()">Buscar</button>
     </div>
+
+    <div id="box-mensagem" class="box" hidden=true>
+    <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Titulo *</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control">
+                  <input id="input-titulo" class="input" type="text" autofocus>
+                  
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Mensagem *</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <textarea id="input-mensagem" class="textarea"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Autor *</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <div class="control is-expanded has-icons-left">
+                      <input id="input-autor" class="input" type="text">
+                      <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                          </span>
+                    </div>
+                    <p class="help is-danger">* campos obrigatorios</p>
+                    <p id="status-mensagem" class="help is-danger" hidden=true></p>
+                  </div>
+                </div>
+              </div>
+          
+          <div class="field is-horizontal">
+            <div class="field-label">
+              <!-- Left empty for spacing -->
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <button class="button is-primary" onclick="enviar_mensagem()">
+                    Enviar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
     
-    <div class="container is-widescreen">
+    <div id="container-listagem" class="container is-widescreen">
         <div class="container" style="filter: blur(5px);">
             <div id="listagem" class="columns is-1 is-multiline"></div>
 
